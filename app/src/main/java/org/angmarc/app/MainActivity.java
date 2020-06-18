@@ -24,9 +24,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setupDefault();
         setupTintedWithCustomClass();
-        setupXml();
     }
 
     private void setupXml() {
@@ -56,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         };
 
         spinner.setSpinnerTextFormatter(textFormatter);
+        spinner.setHint("cuongnb test hint");
         spinner.setSelectedTextFormatter(textFormatter);
         spinner.setOnSpinnerItemSelectedListener(new OnSpinnerItemSelectedListener() {
             @Override

@@ -4,6 +4,8 @@ import android.content.Context;
 
 import java.util.List;
 
+import static org.angmarch.views.NiceSpinner.USE_SPINNER_HINT;
+
 /*
  * Copyright (C) 2015 Angelo Marchesin.
  *
@@ -37,15 +39,23 @@ public class NiceSpinnerAdapter<T> extends NiceSpinnerBaseAdapter {
 
     @Override
     public int getCount() {
-        return items.size() - 1;
+        if (selectedIndex == USE_SPINNER_HINT) {
+            return items.size();
+        } else {
+            return items.size() - 1;
+        }
     }
 
     @Override
     public T getItem(int position) {
-        if (position >= selectedIndex) {
-            return items.get(position + 1);
-        } else {
+        if (selectedIndex == USE_SPINNER_HINT) {
             return items.get(position);
+        } else {
+            if (position >= selectedIndex) {
+                return items.get(position + 1);
+            } else {
+                return items.get(position);
+            }
         }
     }
 

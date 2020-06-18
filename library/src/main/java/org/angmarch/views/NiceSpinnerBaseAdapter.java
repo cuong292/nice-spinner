@@ -30,11 +30,9 @@ public abstract class NiceSpinnerBaseAdapter<T> extends BaseAdapter {
 
     private final PopUpTextAlignment horizontalAlignment;
     private final SpinnerTextFormatter spinnerTextFormatter;
-
+    int selectedIndex;
     private int textColor;
     private int backgroundSelector;
-
-    int selectedIndex;
 
     NiceSpinnerBaseAdapter(
             Context context,
@@ -93,7 +91,12 @@ public abstract class NiceSpinnerBaseAdapter<T> extends BaseAdapter {
     }
 
     void setSelectedIndex(int index) {
+        boolean shouldNotify = false;
+        if (selectedIndex == NiceSpinner.USE_SPINNER_HINT) {
+            shouldNotify = true;
+        }
         selectedIndex = index;
+        if (shouldNotify) notifyDataSetChanged();
     }
 
     public abstract T getItemInDataset(int position);
